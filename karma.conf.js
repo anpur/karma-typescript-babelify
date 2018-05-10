@@ -15,7 +15,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      'src/*.ts': ['karma-typescript'],
+      'src/*.ts': ['babel', 'karma-typescript'],
     },
 
     babelPreprocessor: {
@@ -32,7 +32,7 @@ module.exports = function (config) {
     karmaTypescriptConfig: {
       compilerOptions: {
         sourceMap: true,
-        target: 'es6'
+        target: 'es5'
       },
       bundlerOptions: {
         addNodeGlobals: true,
