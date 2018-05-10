@@ -1,4 +1,4 @@
-module.exports = function(config) {
+module.exports = function (config) {
   if (process.env.BROWSERSTACK_USERNAME && process.env.BROWSERSTACK_ACCESS_KEY) {
     console.log('Using BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY env variables to connect to BrowserStack');
   } else {
@@ -15,13 +15,14 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/*.ts': ['karma-typescript', 'babel'],
+      'src/*.ts': ['babel', 'karma-typescript'],
     },
 
     babelPreprocessor: {
       options: {
         presets: [
-          [ 'es2015' ]
+          ['@babel/env'],
+          ['@babel/typescript']
         ]
       }
     },
@@ -29,15 +30,15 @@ module.exports = function(config) {
     reporters: ['progress', 'karma-typescript', 'mocha'],
 
     karmaTypescriptConfig: {
-        compilerOptions: {
-          sourceMap: true,
-          target: 'es6'
-        },
-        bundlerOptions: {
-          addNodeGlobals: true,
-          sourceMap: true
-        },
-        tsconfig: './tsconfig.json'
+      compilerOptions: {
+        sourceMap: true,
+        target: 'es5'
+      },
+      bundlerOptions: {
+        addNodeGlobals: true,
+        sourceMap: true
+      },
+      tsconfig: './tsconfig.json'
     },
 
     port: 9876,
@@ -60,7 +61,7 @@ module.exports = function(config) {
 
     /* Browserstack */
 
-    browserNoActivityTimeout : 10 * 60 * 1000,
+    browserNoActivityTimeout: 10 * 60 * 1000,
     browserDisconnectTolerance: 2,
     browserDisconnectTimeout: 10000,
 
